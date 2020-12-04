@@ -9,7 +9,9 @@ export class VacanciesResolver {
   constructor(private readonly vacanciesService: VacanciesService) {}
 
   @Mutation(() => Vacancy)
-  createVacancy(@Args('createVacancyInput') createVacancyInput: CreateVacancyInput) {
+  createVacancy(
+    @Args('createVacancyInput') createVacancyInput: CreateVacancyInput,
+  ) {
     return this.vacanciesService.create(createVacancyInput);
   }
 
@@ -24,8 +26,13 @@ export class VacanciesResolver {
   }
 
   @Mutation(() => Vacancy)
-  updateVacancy(@Args('updateVacancyInput') updateVacancyInput: UpdateVacancyInput) {
-    return this.vacanciesService.update(updateVacancyInput.id, updateVacancyInput);
+  updateVacancy(
+    @Args('updateVacancyInput') updateVacancyInput: UpdateVacancyInput,
+  ) {
+    return this.vacanciesService.update(
+      updateVacancyInput.id,
+      updateVacancyInput,
+    );
   }
 
   @Mutation(() => Vacancy)
