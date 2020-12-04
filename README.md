@@ -1,17 +1,16 @@
 ## Microservice Architecture
-- To separate a monolith graph into many **graphql** microservices, but you still want provide one data access point, use [federation](https://www.apollographql.com/blog/apollo-federation-f260cf525d21/)
+- To split a `monolith` graph into many **graphql** `microservices` with only one endpoint, use [federation](https://www.apollographql.com/blog/apollo-federation-f260cf525d21/)
 <p align="center"><img style="display: block; width: 600px; margin: 0 auto;" src=img/2020-12-05-00-32-16.png alt="no image found"></p>
 
 - **Schema Stitching** is a history, don't use it.
-- **Subscription**: currently **not** supported in federated service
-- **Schema Composition** (using `directives`): standard way for federation
+- **Schema Composition** (using `directives`): you should use this one instead.
   - **GraphQL Gateway**
-  - **Account Service** (`Cognito`)
+  - **Account Service** (think about `Cognito`)
   - **Other Service**: for example, RESTful API with Mongodb
 - **Microservice**: 
   - Microservices should be seperated by **concerns**, not `types`.
   - `Internal Network Protocol` can be switched to `tcp` or even `gRPC`.
-
+- **Subscription**: currently **not** supported in federated service
 ## Bricks
 ### Types
 - **Object Types**: defined data model
@@ -19,6 +18,14 @@
 ### Type Definition
 - ID, Int, Float, String, Boolean, GraphQLISODateTime (Date is not built-in type for apollo)
 - Enum and custom
+
+## Project Plan
+- Apollo Offical Starter Tutorial: especially about `auth`, `paginiation` and `subscription` implementation.
+- Implement Apollo Starter project using Nest.js
+- Build this project
+  - Implement the GraphQL server on the Restful API.
+  - Implement the GraphQL server on the Auth Service.
+  - Implement the GraphQL gateway 
 ## Problems
 - Build apollo server with Typescript failed the non-relative path. `So I switch to Nest.js, bit of overhead`
 - How to solve `N+1` problem in GraphQL? - `Data Loader` 
