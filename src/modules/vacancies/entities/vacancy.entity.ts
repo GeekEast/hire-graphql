@@ -1,4 +1,5 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { Company } from '@app/modules/companies/entities/company.entity';
+import { ObjectType, Field, ID, GraphQLISODateTime } from '@nestjs/graphql';
 
 @ObjectType()
 export class Vacancy {
@@ -9,10 +10,11 @@ export class Vacancy {
   title: string;
 
   @Field(() => String, { nullable: true })
-  description: string;
+  description?: string;
 
-  @Field(() => Date)
+  @Field(() => GraphQLISODateTime)
   expiredAt: Date;
 
-  // company: Company;
+  @Field(() => Company, { nullable: true })
+  company?: Company;
 }

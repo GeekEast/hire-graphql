@@ -3,8 +3,27 @@
 # ------------------------------------------------------
 
 type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: ID!
+  name: String!
+  username: String!
+  role: Role!
+}
+
+"""Different roles"""
+enum Role {
+  """default role for new user, have limited access"""
+  USER
+
+  """super user have all access"""
+  ADMIN
+}
+
+type Company {
+  id: ID!
+  name: String!
+  address: String!
+  vacancies: [Vacancy]
+  users: [User]
 }
 
 type Vacancy {
@@ -12,17 +31,13 @@ type Vacancy {
   title: String!
   description: String
   expiredAt: DateTime!
+  company: Company
 }
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
-type Company {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
 
 type Query {
   users: [User!]!
