@@ -10,26 +10,21 @@
 - **Microservice**: 
   - Microservices should be seperated by **concerns**, not `types`.
   - `Internal Network Protocol` can be switched to `tcp` or even `gRPC`.
-- **Subscription**: currently **not** supported in federated service
-## Bricks
-### Types
-- **Object Types**: defined data model
-- **Resolver Types**: define how query and mutation fetch and update data based on object types.
-### Type Definition
-- ID, Int, Float, String, Boolean, GraphQLISODateTime (Date is not built-in type for apollo)
-- Enum and custom
+- **Subscription**: currently **not** supported in Apollo Federation
 
 ## Project Plan
 - Apollo Offical Starter Tutorial: especially about `auth`, `paginiation` and `subscription` implementation.
-- Implement Apollo Starter project using Nest.js
+- Implement Apollo Starter project using `Nest.js`
 - Build this project
-  - Implement the GraphQL server on the Restful API.
-  - Implement the GraphQL server on the Auth Service.
-  - Implement the GraphQL gateway 
-## Problems
-- Build apollo server with Typescript failed the non-relative path. `So I switch to Nest.js, bit of overhead`
+  - Implement the GraphQL server on the Restful **API**.
+  - Implement the GraphQL server on the **Auth** Service.
+  - Implement the GraphQL **gateway** 
+  - Workaround for **subscription** in current architecture.
+## Issues
+- Build apollo server with Typescript failed the non-relative path. - `I switch to Nest.js,out of box ts support`
 - How to solve `N+1` problem in GraphQL? - `Data Loader` 
 ## Resources
+- [Apollo Learning Notes on this project](/docs/notes.md)
 - [How to GraphQL: awesome tutorial to start learning graphql](https://www.howtographql.com/basics/3-big-picture/)
 - [Apollo Federation - A revolutionary architecture for building a distributed graph](https://www.youtube.com/watch?v=lRI0HfXBAm8&list=PLE8UH9yEJFs6xzS4u_NZHpq2KBWAy0DcU&index=604)
 - [Principal GraphQL: GraphQL Best Practices](https://principledgraphql.com/integrity)
