@@ -12,8 +12,12 @@ export class CompaniesService {
     return `This action returns all companies`;
   }
 
-  findOne(id: number) {
+  findById(id: string) {
     return `This action returns a #${id} company`;
+  }
+
+  findOne(id: string) {
+    return `This action returns a company`;
   }
 
   update(id: number, updateCompanyInput: UpdateCompanyInput) {

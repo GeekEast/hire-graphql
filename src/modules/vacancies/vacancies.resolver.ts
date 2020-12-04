@@ -9,22 +9,26 @@ export class VacanciesResolver {
   constructor(private readonly vacanciesService: VacanciesService) {}
 
   @Mutation(() => Vacancy)
+  // create
   createVacancy(
     @Args('createVacancyInput') createVacancyInput: CreateVacancyInput,
   ) {
     return this.vacanciesService.create(createVacancyInput);
   }
 
+  // index
   @Query(() => [Vacancy], { name: 'vacancies' })
   findAll() {
     return this.vacanciesService.findAll();
   }
 
+  // show
   @Query(() => Vacancy, { name: 'vacancy' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.vacanciesService.findOne(id);
   }
 
+  // update
   @Mutation(() => Vacancy)
   updateVacancy(
     @Args('updateVacancyInput') updateVacancyInput: UpdateVacancyInput,
@@ -35,8 +39,11 @@ export class VacanciesResolver {
     );
   }
 
+  // delte
   @Mutation(() => Vacancy)
   removeVacancy(@Args('id', { type: () => Int }) id: number) {
     return this.vacanciesService.remove(id);
   }
+
+  //------------- field resolver ----------------
 }

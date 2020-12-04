@@ -21,7 +21,7 @@ export class CompaniesResolver {
   }
 
   @Query(() => Company, { name: 'company' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => Int }) id: string) {
     return this.companiesService.findOne(id);
   }
 
