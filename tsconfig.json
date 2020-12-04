@@ -13,9 +13,10 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@app/*": ["./*"]
+      "@app/*": ["./src/*"],
+      "@root/*": ["./*"]
     }
   },
   "include": ["src/**/*"]

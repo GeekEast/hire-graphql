@@ -7,15 +7,25 @@ type Recipe {
   exampleField: Int!
 }
 
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   recipes: [Recipe!]!
   recipe(id: Int!): Recipe!
+  users: [User!]!
+  user(id: Int!): User!
 }
 
 type Mutation {
   createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
   updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
   removeRecipe(id: Int!): Recipe!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
 }
 
 input CreateRecipeInput {
@@ -24,6 +34,17 @@ input CreateRecipeInput {
 }
 
 input UpdateRecipeInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!

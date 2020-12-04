@@ -9,7 +9,9 @@ export class RecipesResolver {
   constructor(private readonly recipesService: RecipesService) {}
 
   @Mutation(() => Recipe)
-  createRecipe(@Args('createRecipeInput') createRecipeInput: CreateRecipeInput) {
+  createRecipe(
+    @Args('createRecipeInput') createRecipeInput: CreateRecipeInput,
+  ) {
     return this.recipesService.create(createRecipeInput);
   }
 
@@ -24,7 +26,9 @@ export class RecipesResolver {
   }
 
   @Mutation(() => Recipe)
-  updateRecipe(@Args('updateRecipeInput') updateRecipeInput: UpdateRecipeInput) {
+  updateRecipe(
+    @Args('updateRecipeInput') updateRecipeInput: UpdateRecipeInput,
+  ) {
     return this.recipesService.update(updateRecipeInput.id, updateRecipeInput);
   }
 
