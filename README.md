@@ -1,8 +1,7 @@
-## GrapQL API
-
-- resolve: define how query and mutation fetch and update data.
-- Grapgql Built-in Scalar Types: `Int`, `Float`, `String`, `Boolean`, `ID`
-
-
-### Types
+## Types
+- **Object Types**: defined data model
+- **Resolver Types**: define how query and mutation fetch and update data based on object types.
+### Type Definition
 - ID, Int, Float, String, Boolean, GraphQLISODateTime
+- Enum
+- Custom
