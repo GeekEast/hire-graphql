@@ -6,7 +6,7 @@
 - Enum and custom
 ### Apollo Federation
 - To separate a monolith graph into microservices, but you still want provide one data access point, use [federation](https://www.apollographql.com/blog/apollo-federation-f260cf525d21/)
-<p align="center"><img style="display: block; width: 600px; margin: 0 auto;" src=img/2020-12-04-22-00-55.png alt="no image found"></p>
+<p align="center"><img style="display: block; width: 600px; margin: 0 auto;" src=img/2020-12-05-00-32-16.png alt="no image found"></p>
 
 - **Schema Stitching** is a history, don't use it.
 - **Schema Composition** (using `directives`): standard way for federation
