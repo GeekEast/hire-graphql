@@ -3,6 +3,7 @@
 <p align="center"><img style="display: block; width: 600px; margin: 0 auto;" src=img/2020-12-05-00-32-16.png alt="no image found"></p>
 
 - **Schema Stitching** is a history, don't use it.
+- **Subscription**: currently **not** supported in federated service
 - **Schema Composition** (using `directives`): standard way for federation
   - **GraphQL Gateway**
   - **Account Service** (`Cognito`)
@@ -19,6 +20,7 @@
 - ID, Int, Float, String, Boolean, GraphQLISODateTime (Date is not built-in type for apollo)
 - Enum and custom
 ## Problems
+- Build apollo server with Typescript failed the non-relative path. `So I switch to Nest.js, bit of overhead`
 - How to solve `N+1` problem in GraphQL? - `Data Loader` 
 ## Resources
 - [How to GraphQL: awesome tutorial to start learning graphql](https://www.howtographql.com/basics/3-big-picture/)
