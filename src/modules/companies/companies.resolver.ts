@@ -1,24 +1,23 @@
+import { Company } from './entities/company.entity';
+import { CreateCompanyInput } from './dto/create-company.input';
+import { PaginateCompanyInput } from './dto/paginate-company.input';
+import { UpdateCompanyInput } from './dto/update-company.input';
+import { User } from '@app/modules/users/entities/user.entity';
 import { Vacancy } from '@app/modules/vacancies/entities/vacancy.entity';
 import {
   Args,
   Context,
   ID,
-  Int,
   Mutation,
   Parent,
   Query,
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { Company } from './entities/company.entity';
-import { CreateCompanyInput } from './dto/create-company.input';
-import { ListCompanyInput } from './dto/list-company.input';
-import { UpdateCompanyInput } from './dto/update-company.input';
 
 @Resolver(() => Company)
 export class CompaniesResolver {
   // ----------------- Query Resolver-------------------------
-  // let's start from a show resolver
   @Query(() => Company)
   async company(
     @Args('id', { type: () => ID }) id: string,
@@ -27,41 +26,50 @@ export class CompaniesResolver {
     return await dataSources.companyAPI.findById(id);
   }
 
+  @Query(() => [Company], { nullable: 'items' }) // type name will function name by default
+  async companies(
+    @Args('paginateCompanyInput', { nullable: true })
+    paginateCompanyInput: PaginateCompanyInput,
+    @Context() { dataSources },
+  ) {
+    return await dataSources.companyAPI.findAll(paginateCompanyInput);
+  }
+
+  //-----------------Query Field Resolver----------------------
   @ResolveField(() => [Vacancy], { nullable: 'items' })
   async vacancies(@Parent() company: Company, @Context() { dataSources }) {
     const { id } = company;
     return await dataSources.companyAPI.vacancies(id);
   }
 
-  // index
-  @Query(() => [Company], { nullable: 'items' }) // type name will function name by default
-  async companies(
-    @Args('listCompanyInput', { nullable: true })
-    listCompanyInput: ListCompanyInput,
-    @Context() { dataSources },
-  ) {
-    return await dataSources.companyAPI.findAll(listCompanyInput);
+  @ResolveField(() => [User], { nullable: 'items' })
+  async users(@Parent() company: Company, @Context() { dataSources }) {
+    const { id } = company;
+    return await dataSources.companyAPI.users(id);
   }
 
   // ----------------- Mutation Resolver-------------------------
-
   @Mutation(() => Company, { name: 'createCompany' })
   async createCompany(
     @Args('createCompanyInput') createCompanyInput: CreateCompanyInput,
     @Context() { dataSources },
   ) {
-    return await dataSources.dataAPI.createCompany(createCompanyInput);
+    return await dataSources.companyAPI.createCompany(createCompanyInput);
   }
 
   @Mutation(() => Company)
-  updateCompany(
+  async updateCompany(
     @Args('updateCompanyInput') updateCompanyInput: UpdateCompanyInput,
+    @Context() { dataSources },
   ) {
-    return '';
+    return await dataSources.companyAPI.updateCompany(updateCompanyInput);
   }
 
-  @Mutation(() => Company)
-  removeCompany(@Args('id', { type: () => Int }) id: number) {
-    return '';
+  @Mutation(() => Company, { nullable: true })
+  async removeCompany(
+    @Args('id', { type: () => String }) id: string,
+    @Context() { dataSources },
+  ) {
+    return await dataSources.companyAPI.removeCompany(id);
   }
 }

@@ -1,16 +1,23 @@
 import { ProtectedAPIBase } from '@app/common/rest/protected.api';
 import { CreateCompanyInput } from '@app/modules/companies/dto/create-company.input';
-import { ListCompanyInput } from './dto/list-company.input';
+import { PaginateCompanyInput } from './dto/paginate-company.input';
+import { UpdateCompanyInput } from './dto/update-company.input';
 
 export class Company extends ProtectedAPIBase {
   async findById(id: string) {
     return await this.get(`/${id}`);
   }
 
+  async findAll(paginateCompanyInput: PaginateCompanyInput) {
+    return await this.get(this.baseURL, { ...paginateCompanyInput });
+  }
+
   async vacancies(id: string) {
-    const vs = await this.get(`/${id}/vacancies`);
-    console.log(vs);
     return await this.get(`/${id}/vacancies`);
+  }
+
+  async users(id: string) {
+    return await this.get(`/${id}/users`);
   }
 
   async createCompany(createCompanyInput: CreateCompanyInput) {
@@ -22,11 +29,13 @@ export class Company extends ProtectedAPIBase {
     return { ...company, id: company._id };
   }
 
-  async findAll(listCompanyDto: ListCompanyInput) {
-    const companies = await this.get(this.baseURL, {
-      limit: listCompanyDto?.limit || 20,
-      skip: listCompanyDto?.skip || 0,
+  async updateCompany(updateCompanyInput: UpdateCompanyInput) {
+    return await this.patch(`/${updateCompanyInput.id}`, {
+      ...updateCompanyInput,
     });
-    return companies;
+  }
+
+  async removeCompany(id: string) {
+    return await this.delete(`/${id}`);
   }
 }

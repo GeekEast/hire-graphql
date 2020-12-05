@@ -20,14 +20,6 @@ type SignUpResponse {
   role: String!
 }
 
-type Company {
-  id: ID!
-  name: String!
-  address: String!
-  vacancies: [Vacancy]
-  users: [User]
-}
-
 type Vacancy {
   id: ID!
   title: String!
@@ -36,18 +28,27 @@ type Vacancy {
   company: Company
 }
 
+type Company {
+  id: ID!
+  name: String!
+  address: String!
+  vacancies: [Vacancy]
+  users: [User]
+}
+
 type Query {
   company(id: ID!): Company!
-  companies(listCompanyInput: ListCompanyInput): [Company]!
+  companies(paginateCompanyInput: PaginateCompanyInput): [Company]!
   users: [User!]!
   user(id: Int!): User!
   vacancies: [Vacancy!]!
   vacancy(id: Int!): Vacancy!
 }
 
-input ListCompanyInput {
+input PaginateCompanyInput {
   skip: Int
   limit: Int
+  sort: String
 }
 
 type Mutation {
@@ -55,7 +56,7 @@ type Mutation {
   signup(signupUserInput: SignupUserInput!): SignUpResponse!
   createCompany(createCompanyInput: CreateCompanyInput!): Company!
   updateCompany(updateCompanyInput: UpdateCompanyInput!): Company!
-  removeCompany(id: Int!): Company!
+  removeCompany(id: String!): Company
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
@@ -85,7 +86,7 @@ input CreateCompanyInput {
 input UpdateCompanyInput {
   name: String
   address: String
-  id: String!
+  id: ID!
 }
 
 input CreateUserInput {
