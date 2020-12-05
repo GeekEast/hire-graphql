@@ -1,9 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateCompanyInput } from './dto/create-company.input';
 import { UpdateCompanyInput } from './dto/update-company.input';
+import { RESTDataSource } from 'apollo-datasource-rest';
+import { CONTEXT } from '@nestjs/graphql';
 
 @Injectable()
-export class CompaniesService {
+export class CompanyAPI extends RESTDataSource {
+  constructor(private configService: ConfigService, @Inject(CONTEXT) context) {
+    super();
+    this.baseURL = this.configService.get<string>('api_url') + '/companies';
+  }
   create(createCompanyInput: CreateCompanyInput) {
     return 'This action adds a new company';
   }
