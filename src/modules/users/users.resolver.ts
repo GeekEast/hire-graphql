@@ -1,4 +1,4 @@
-import { Company } from '../companies/entities/company.entity';
+import { Company } from '@app/modules/companies/entities/company.entity';
 import { PaginateUserInput } from './dto/paginate-company.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './entities/user.entity';
@@ -37,7 +37,7 @@ export class UsersResolver {
   @ResolveField(() => Company, { nullable: true })
   async company(@Parent() User: User, @Context() { dataSources }) {
     const { id } = User;
-    return await dataSources.userAPI.company(id);
+    return await dataSources.companyAPI.findById(id);
   }
 
   // ----------------- Mutation Resolver-------------------------

@@ -1,26 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserInput } from '../auth/dto/signup.dto';
+import { ProtectedAPIBase } from '@app/common/rest/protected.api';
+import { PaginateUserInput } from './dto/paginate-company.input';
 import { UpdateUserInput } from './dto/update-user.input';
 
-@Injectable()
-export class UsersService {
-  create(createUserInput: CreateUserInput) {
-    return 'This action adds a new user';
+export class User extends ProtectedAPIBase {
+  async findById(id: string) {
+    return await this.get(`/${id}`);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll(paginateUserInput: PaginateUserInput) {
+    return await this.get(this.baseURL, { ...paginateUserInput });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async updateUser(updateUserInput: UpdateUserInput) {
+    return await this.patch(`/${updateUserInput.id}`, {
+      ...updateUserInput,
+    });
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async removeUser(id: string) {
+    return await this.delete(`/${id}`);
   }
 }

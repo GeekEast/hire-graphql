@@ -21,12 +21,7 @@ export class Company extends ProtectedAPIBase {
   }
 
   async createCompany(createCompanyInput: CreateCompanyInput) {
-    const { name, address } = createCompanyInput;
-    const company = await this.post(this.baseURL, {
-      name,
-      address,
-    });
-    return { ...company, id: company._id };
+    return await this.post(this.baseURL, { ...createCompanyInput });
   }
 
   async updateCompany(updateCompanyInput: UpdateCompanyInput) {

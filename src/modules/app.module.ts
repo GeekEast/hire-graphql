@@ -6,6 +6,7 @@ import { Company as CompanyAPI } from './companies/companies.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql/dist/graphql.module';
 import { Module } from '@nestjs/common';
+import { User as UserAPI } from './users/users.service';
 import { UsersModule } from './users/users.module';
 import { VacanciesModule } from './vacancies/vacancies.module';
 import { Vacancy as VacancyAPI } from './vacancies/vacancies.service';
@@ -29,6 +30,7 @@ import { Vacancy as VacancyAPI } from './vacancies/vacancies.service';
             authAPI: new AuthAPI('/'),
             companyAPI: new CompanyAPI('/companies'),
             vacancyAPI: new VacancyAPI('/vacancies'),
+            userAPI: new UserAPI('/users'),
           }),
         }),
       inject: [ConfigService],
