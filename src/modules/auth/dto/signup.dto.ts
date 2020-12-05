@@ -1,7 +1,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
-export class SignupUserInput {
+export class CreateUserInput {
   @Field(() => String)
   username: string;
 

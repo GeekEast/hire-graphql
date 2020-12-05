@@ -1,4 +1,4 @@
-import { CreateUserInput } from './create-user.input';
+import { CreateUserInput } from '@app/modules/auth/dto/signup.dto';
 import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 
 @InputType()

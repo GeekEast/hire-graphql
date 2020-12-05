@@ -11,6 +11,7 @@ type User {
   name: String!
   username: String!
   role: String!
+  company: Company
 }
 
 type SignUpResponse {
@@ -18,6 +19,7 @@ type SignUpResponse {
   name: String!
   username: String!
   role: String!
+  company: Company
 }
 
 type Vacancy {
@@ -39,8 +41,8 @@ type Company {
 type Query {
   company(id: ID!): Company!
   companies(paginateCompanyInput: PaginateCompanyInput): [Company]!
-  users: [User!]!
-  user(id: Int!): User!
+  user(id: ID!): User!
+  users(paginateUserInput: PaginateUserInput): [User]!
   vacancies: [Vacancy!]!
   vacancy(id: Int!): Vacancy!
 }
@@ -51,15 +53,20 @@ input PaginateCompanyInput {
   sort: String
 }
 
+input PaginateUserInput {
+  skip: Int
+  limit: Int
+  sort: String
+}
+
 type Mutation {
   login(loginUserInput: LoginUserInput!): LoginResponse!
-  signup(signupUserInput: SignupUserInput!): SignUpResponse!
+  signup(createUserInput: CreateUserInput!): SignUpResponse!
   createCompany(createCompanyInput: CreateCompanyInput!): Company!
   updateCompany(updateCompanyInput: UpdateCompanyInput!): Company!
   removeCompany(id: String!): Company
-  createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
+  removeUser(id: String!): User
   createVacancy(createVacancyInput: CreateVacancyInput!): Vacancy!
   updateVacancy(updateVacancyInput: UpdateVacancyInput!): Vacancy!
   removeVacancy(id: Int!): Vacancy!
@@ -70,7 +77,7 @@ input LoginUserInput {
   password: String!
 }
 
-input SignupUserInput {
+input CreateUserInput {
   username: String!
   password: String!
   name: String!
@@ -89,14 +96,12 @@ input UpdateCompanyInput {
   id: ID!
 }
 
-input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  username: String
+  password: String
+  name: String
+  confirmed_password: String
+  companyId: String
   id: Int!
 }
 
