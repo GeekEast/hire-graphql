@@ -13,7 +13,7 @@ export class AuthResolver {
     @Context() { dataSources }: any,
   ) {
     console.log(loginUserInput);
-    return await dataSources.authAPI.login(loginUserInput);
+    return await dataSources.authAPI.signin(loginUserInput);
   }
 
   @Mutation(() => SignUpResponse)

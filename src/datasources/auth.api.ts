@@ -8,7 +8,7 @@ export class AuthAPI extends RESTDataSource {
     this.baseURL = baseURL;
   }
 
-  async login(loginUserInput: LoginUserInput) {
+  async signin(loginUserInput: LoginUserInput) {
     return await this.post(`${this.baseURL}/signin`, loginUserInput);
   }
 
