@@ -6,6 +6,15 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
+
+  // add pipes
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: false, // for graphql, you must turn off this option
+      transform: false, // convert object to class instance, set it off.
+    }),
+  );
+
   const port = configService.get<number>('PORT');
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(port);

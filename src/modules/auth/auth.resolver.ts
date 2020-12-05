@@ -12,6 +12,7 @@ export class AuthResolver {
     @Args('loginUserInput') loginUserInput: LoginUserInput,
     @Context() { dataSources }: any,
   ) {
+    console.log(loginUserInput);
     return await dataSources.authAPI.login(loginUserInput);
   }
 

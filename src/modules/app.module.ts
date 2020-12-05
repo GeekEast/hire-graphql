@@ -8,7 +8,7 @@ import { GraphQLModule } from '@nestjs/graphql/dist/graphql.module';
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { VacanciesModule } from './vacancies/vacancies.module';
-
+import _ from 'lodash';
 @Module({
   imports: [
     UsersModule,

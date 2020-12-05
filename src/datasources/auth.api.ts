@@ -9,22 +9,13 @@ export class AuthAPI extends RESTDataSource {
   }
 
   async login(loginUserInput: LoginUserInput) {
-    const username = String(loginUserInput.username);
-    const password = String(loginUserInput.password);
-    return await this.post(`${this.baseURL}/signin`, {
-      username,
-      password,
-    });
+    return await this.post(`${this.baseURL}/signin`, loginUserInput);
   }
 
   async signup(signupUserInput: SignupUserInput) {
-    const user = await this.post(`${this.baseURL}/signup`, {
-      name: signupUserInput.name,
-      username: signupUserInput.username,
-      password: signupUserInput.password,
-      confirmed_password: signupUserInput.confirmed_password,
+    return await this.post(`${this.baseURL}/signup`, {
+      ...signupUserInput,
       company: signupUserInput.companyId,
     });
-    return { ...user, id: user._id };
   }
 }

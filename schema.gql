@@ -20,6 +20,15 @@ type SignUpResponse {
   role: String!
 }
 
+type Company {
+  id: ID!
+  name: String!
+  address: String!
+  vacancies: [Vacancy]
+  users: [User]
+  associateVacancies: [Vacancy]!
+}
+
 type Vacancy {
   id: ID!
   title: String!
@@ -33,16 +42,8 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type Company {
-  id: ID!
-  name: String!
-  address: String!
-  vacancies: [Vacancy]
-  users: [User]
-}
-
 type Query {
-  companies(listCompanyInput: ListCompanyInput): [Company!]!
+  companies(listCompanyInput: ListCompanyInput): [Company]!
   company(id: Int!): Company!
   users: [User!]!
   user(id: Int!): User!
@@ -70,7 +71,7 @@ type Mutation {
 }
 
 input LoginUserInput {
-  username: String!
+  username: ID!
   password: String!
 }
 
