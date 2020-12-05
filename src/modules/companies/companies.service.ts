@@ -7,6 +7,12 @@ export class Company extends ProtectedAPIBase {
     return await this.get(`/${id}`);
   }
 
+  async vacancies(id: string) {
+    const vs = await this.get(`/${id}/vacancies`);
+    console.log(vs);
+    return await this.get(`/${id}/vacancies`);
+  }
+
   async createCompany(createCompanyInput: CreateCompanyInput) {
     const { name, address } = createCompanyInput;
     const company = await this.post(this.baseURL, {

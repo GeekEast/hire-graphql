@@ -28,8 +28,9 @@ export class CompaniesResolver {
   }
 
   @ResolveField(() => [Vacancy], { nullable: 'items' })
-  async vacancies(@Parent() company: Company) {
+  async vacancies(@Parent() company: Company, @Context() { dataSources }) {
     const { id } = company;
+    return await dataSources.companyAPI.vacancies(id);
   }
 
   // index

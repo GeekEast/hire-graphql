@@ -8,6 +8,8 @@ import { GraphQLModule } from '@nestjs/graphql/dist/graphql.module';
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { VacanciesModule } from './vacancies/vacancies.module';
+import { Vacancy as VacancyAPI } from './vacancies/vacancies.service';
+
 @Module({
   imports: [
     UsersModule,
@@ -26,6 +28,7 @@ import { VacanciesModule } from './vacancies/vacancies.module';
           dataSources: () => ({
             authAPI: new AuthAPI('/'),
             companyAPI: new CompanyAPI('/companies'),
+            vacancyAPI: new VacancyAPI('/vacancies'),
           }),
         }),
       inject: [ConfigService],
