@@ -26,7 +26,7 @@ export class VacanciesResolver {
   }
 
   @Query(() => [Vacancy], { nullable: 'items' }) // type name will function name by default
-  async companies(
+  async vacancies(
     @Args('paginateVacancyInput', { nullable: true })
     paginateVacancyInput: PaginateVacancyInput,
     @Context() { dataSources },

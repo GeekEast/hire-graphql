@@ -21,9 +21,6 @@ import { Vacancy as VacancyAPI } from './vacancies/vacancies.service';
       useFactory: async () =>
         // configService: ConfigService
         ({
-          // TODO: NODE_ENV switch
-          debug: true,
-          playground: true,
           installSubscriptionHandlers: true,
           autoSchemaFile: 'schema.gql',
           dataSources: () => ({

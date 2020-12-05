@@ -40,19 +40,26 @@ type Company {
 
 type Query {
   company(id: ID!): Company!
-  companies(paginateVacancyInput: PaginateVacancyInput): [Vacancy]!
+  companies(paginateCompanyInput: PaginateCompanyInput): [Company]!
   user(id: ID!): User!
   users(paginateUserInput: PaginateUserInput): [User]!
   vacancy(id: ID!): Vacancy!
+  vacancies(paginateVacancyInput: PaginateVacancyInput): [Vacancy]!
 }
 
-input PaginateVacancyInput {
+input PaginateCompanyInput {
   skip: Int
   limit: Int
   sort: String
 }
 
 input PaginateUserInput {
+  skip: Int
+  limit: Int
+  sort: String
+}
+
+input PaginateVacancyInput {
   skip: Int
   limit: Int
   sort: String
