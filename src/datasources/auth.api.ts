@@ -1,6 +1,6 @@
 import { LoginUserInput } from '@app/modules/auth/dto/login.dto';
-import { RESTDataSource } from 'apollo-datasource-rest';
 import { SignupUserInput } from '@app/modules/auth/dto/signup.dto';
+import { RESTDataSource } from 'apollo-datasource-rest';
 
 export class AuthAPI extends RESTDataSource {
   constructor(baseURL: string) {

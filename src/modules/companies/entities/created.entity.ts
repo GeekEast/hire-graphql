@@ -1,10 +1,10 @@
 import { User } from '@app/modules/users/entities/user.entity';
 import { Vacancy } from '@app/modules/vacancies/entities/vacancy.entity';
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
-export class Company {
-  @Field(() => ID)
+export class CreateCompanyResponse {
+  @Field(() => String)
   id: string;
 
   @Field(() => String)

@@ -83,14 +83,14 @@ input SignupUserInput {
 }
 
 input CreateCompanyInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  address: String!
 }
 
 input UpdateCompanyInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  name: String
+  address: String
+  id: String!
 }
 
 input CreateUserInput {

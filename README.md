@@ -31,3 +31,7 @@
 - [Nexus: nest underlying lib to generate schema from code](https://nexusjs.org/)
 - [Prisma: type-safe relational database ORM](https://www.prisma.io/docs/concepts/more/comparisons/prisma-and-typeorm#api-comparison)
 - [Github: Apollo Federation Demo](https://github.com/apollographql/federation-demo)
+
+
+## Tasks
+- Add global exception filters.

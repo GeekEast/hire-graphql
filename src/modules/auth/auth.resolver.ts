@@ -10,7 +10,7 @@ export class AuthResolver {
   @Mutation(() => LoginResponse)
   async login(
     @Args('loginUserInput') loginUserInput: LoginUserInput,
-    @Context() { dataSources },
+    @Context() { dataSources }: any,
   ) {
     return await dataSources.authAPI.login(loginUserInput);
   }
@@ -18,7 +18,7 @@ export class AuthResolver {
   @Mutation(() => SignUpResponse)
   async signup(
     @Args('signupUserInput') signupUserInput: SignupUserInput,
-    @Context() { dataSources },
+    @Context() { dataSources }: any,
   ) {
     return await dataSources.authAPI.signup(signupUserInput);
   }
