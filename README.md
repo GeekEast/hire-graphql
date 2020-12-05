@@ -35,3 +35,4 @@
 
 ## Tasks
 - Add global exception filters.
+- You need to know about how dependency injection works and how to implement it.

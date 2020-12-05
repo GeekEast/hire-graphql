@@ -1,11 +1,10 @@
-import { ListCompanyInput } from './../modules/companies/dto/list-company.input';
+import { ProtectedAPIBase } from '@app/common/rest/protected.api';
 import { CreateCompanyInput } from '@app/modules/companies/dto/create-company.input';
-import { ProtectedAPIBase } from './protected.api';
+import { ListCompanyInput } from './dto/list-company.input';
 
-export class DataAPI extends ProtectedAPIBase {
-  constructor(baseURL: string) {
-    super();
-    this.baseURL = baseURL + '/companies';
+export class Company extends ProtectedAPIBase {
+  async findById(id: string) {
+    return await this.get(`/${id}`);
   }
 
   async createCompany(createCompanyInput: CreateCompanyInput) {
@@ -17,7 +16,7 @@ export class DataAPI extends ProtectedAPIBase {
     return { ...company, id: company._id };
   }
 
-  async listCompanies(listCompanyDto: ListCompanyInput) {
+  async findAll(listCompanyDto: ListCompanyInput) {
     const companies = await this.get(this.baseURL, {
       limit: listCompanyDto?.limit || 20,
       skip: listCompanyDto?.skip || 0,

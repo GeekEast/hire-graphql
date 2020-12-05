@@ -2,6 +2,7 @@ import { Vacancy } from '@app/modules/vacancies/entities/vacancy.entity';
 import {
   Args,
   Context,
+  ID,
   Int,
   Mutation,
   Parent,
@@ -16,26 +17,39 @@ import { UpdateCompanyInput } from './dto/update-company.input';
 
 @Resolver(() => Company)
 export class CompaniesResolver {
-  @Mutation(() => Company)
+  // ----------------- Query Resolver-------------------------
+  // let's start from a show resolver
+  @Query(() => Company)
+  async company(
+    @Args('id', { type: () => ID }) id: string,
+    @Context() { dataSources },
+  ) {
+    return await dataSources.companyAPI.findById(id);
+  }
+
+  @ResolveField(() => [Vacancy], { nullable: 'items' })
+  async vacancies(@Parent() company: Company) {
+    const { id } = company;
+  }
+
+  // index
+  @Query(() => [Company], { nullable: 'items' }) // type name will function name by default
+  async companies(
+    @Args('listCompanyInput', { nullable: true })
+    listCompanyInput: ListCompanyInput,
+    @Context() { dataSources },
+  ) {
+    return await dataSources.companyAPI.findAll(listCompanyInput);
+  }
+
+  // ----------------- Mutation Resolver-------------------------
+
+  @Mutation(() => Company, { name: 'createCompany' })
   async createCompany(
     @Args('createCompanyInput') createCompanyInput: CreateCompanyInput,
     @Context() { dataSources },
   ) {
     return await dataSources.dataAPI.createCompany(createCompanyInput);
-  }
-
-  @Query(() => [Company], { name: 'companies', nullable: 'items' })
-  async findAll(
-    @Args('listCompanyInput', { nullable: true })
-    listCompanyInput: ListCompanyInput,
-    @Context() { dataSources },
-  ) {
-    return await dataSources.dataAPI.listCompanies(listCompanyInput);
-  }
-
-  @Query(() => Company, { name: 'company' })
-  findOne(@Args('id', { type: () => Int }) id: string) {
-    return '';
   }
 
   @Mutation(() => Company)
@@ -48,10 +62,5 @@ export class CompaniesResolver {
   @Mutation(() => Company)
   removeCompany(@Args('id', { type: () => Int }) id: number) {
     return '';
-  }
-
-  @ResolveField(() => [Vacancy], { nullable: 'items' })
-  async associateVacancies(@Parent() company: Company) {
-    const { id } = company;
   }
 }

@@ -8,3 +8,9 @@
 
 - if you define one fiedd as not nullable, it must return somthing back. other wise errors.
 - if youd define one field as not nullbale, and it doesn't return something in you code logic, when the client request that data, it won't throw an error, simply because you don't request it.
+
+
+
+### Reference
+- [Apollo Official Website]()
+- [Nestjs GraphQL Documentation]()

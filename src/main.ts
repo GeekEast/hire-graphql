@@ -12,6 +12,9 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: false, // for graphql, you must turn off this option
       transform: false, // convert object to class instance, set it off.
+      transformOptions: {
+        enableImplicitConversion: false,
+      },
     }),
   );
 
