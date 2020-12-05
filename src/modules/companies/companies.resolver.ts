@@ -3,6 +3,7 @@ import { CompanyAPI } from './companies.service';
 import { Company } from './entities/company.entity';
 import { CreateCompanyInput } from './dto/create-company.input';
 import { UpdateCompanyInput } from './dto/update-company.input';
+import { ListCompanyInput } from './dto/list-company.input';
 
 @Resolver(() => Company)
 export class CompaniesResolver {
@@ -16,8 +17,11 @@ export class CompaniesResolver {
   }
 
   @Query(() => [Company], { name: 'companies' })
-  findAll() {
-    return this.companyAPI.findAll();
+  findAll(
+    @Args('listCompanyInput', { nullable: true })
+    listCompanyInput: ListCompanyInput,
+  ) {
+    return this.companyAPI.list(listCompanyInput);
   }
 
   @Query(() => Company, { name: 'company' })

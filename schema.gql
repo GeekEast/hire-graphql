@@ -2,28 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type LoginResponse {
+  access_token: String
+}
+
 type User {
   id: ID!
   name: String!
   username: String!
-  role: Role!
+  role: String!
 }
 
-"""Different roles"""
-enum Role {
-  """default role for new user, have limited access"""
-  USER
-
-  """super user have all access"""
-  ADMIN
-}
-
-type Company {
+type SignUpResponse {
   id: ID!
   name: String!
-  address: String!
-  vacancies: [Vacancy]
-  users: [User]
+  username: String!
+  role: String!
 }
 
 type Vacancy {
@@ -39,25 +33,64 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Company {
+  id: ID!
+  name: String!
+  address: String!
+  vacancies: [Vacancy]
+  users: [User]
+}
+
 type Query {
+  companies(listCompanyInput: ListCompanyInput): [Company!]!
+  company(id: Int!): Company!
   users: [User!]!
   user(id: Int!): User!
   vacancies: [Vacancy!]!
   vacancy(id: Int!): Vacancy!
-  companies: [Company!]!
-  company(id: Int!): Company!
+}
+
+input ListCompanyInput {
+  skip: Int
+  limit: Int
 }
 
 type Mutation {
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  signup(signupUserInput: SignupUserInput!): SignUpResponse!
+  createCompany(createCompanyInput: CreateCompanyInput!): Company!
+  updateCompany(updateCompanyInput: UpdateCompanyInput!): Company!
+  removeCompany(id: Int!): Company!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
   createVacancy(createVacancyInput: CreateVacancyInput!): Vacancy!
   updateVacancy(updateVacancyInput: UpdateVacancyInput!): Vacancy!
   removeVacancy(id: Int!): Vacancy!
-  createCompany(createCompanyInput: CreateCompanyInput!): Company!
-  updateCompany(updateCompanyInput: UpdateCompanyInput!): Company!
-  removeCompany(id: Int!): Company!
+}
+
+input LoginUserInput {
+  username: String!
+  password: String!
+}
+
+input SignupUserInput {
+  username: String!
+  password: String!
+  name: String!
+  confirmed_password: String!
+  companyId: String
+}
+
+input CreateCompanyInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateCompanyInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 input CreateUserInput {
@@ -77,17 +110,6 @@ input CreateVacancyInput {
 }
 
 input UpdateVacancyInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateCompanyInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateCompanyInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!

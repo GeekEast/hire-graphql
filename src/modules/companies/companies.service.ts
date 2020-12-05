@@ -5,6 +5,7 @@ import { UpdateCompanyInput } from './dto/update-company.input';
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { CONTEXT } from '@nestjs/graphql';
 import { Request } from 'express';
+import { ListCompanyInput } from './dto/list-company.input';
 
 @Injectable()
 export class CompanyAPI extends RESTDataSource {
@@ -15,6 +16,11 @@ export class CompanyAPI extends RESTDataSource {
     super();
     this.baseURL = this.configService.get<string>('api_url') + '/companies';
   }
+
+  list(listCompanyInput: ListCompanyInput) {
+    return [{ id: 1, name: 'x', address: 'x' }];
+  }
+
   create(createCompanyInput: CreateCompanyInput) {
     return 'This action adds a new company';
   }

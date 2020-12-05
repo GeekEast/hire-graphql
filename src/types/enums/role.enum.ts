@@ -1,15 +1,15 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 export enum Role {
-  USER,
-  ADMIN,
+  user,
+  admin,
 }
 
 registerEnumType(Role, {
   name: 'Role',
   description: 'Different roles',
   valuesMap: {
-    USER: { description: 'default role for new user, have limited access' },
-    ADMIN: { description: 'super user have all access' },
+    user: { description: 'default role for new user, have limited access' },
+    admin: { description: 'super user have all access' },
   },
 });
