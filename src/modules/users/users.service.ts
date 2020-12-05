@@ -11,6 +11,10 @@ export class User extends ProtectedAPIBase {
     return await this.get(this.baseURL, { ...paginateUserInput });
   }
 
+  async company(id: string) {
+    return await this.get(`/${id}/company`);
+  }
+
   async updateUser(updateUserInput: UpdateUserInput) {
     return await this.patch(`/${updateUserInput.id}`, {
       ...updateUserInput,

@@ -35,9 +35,8 @@ export class UsersResolver {
 
   //-----------------Query Field Resolver----------------------
   @ResolveField(() => Company, { nullable: true })
-  async company(@Parent() User: User, @Context() { dataSources }) {
-    const { id } = User;
-    return await dataSources.companyAPI.findById(id);
+  async company(@Parent() user: User, @Context() { dataSources }) {
+    return await dataSources.userAPI.company(user.id);
   }
 
   // ----------------- Mutation Resolver-------------------------

@@ -40,14 +40,13 @@ type Company {
 
 type Query {
   company(id: ID!): Company!
-  companies(paginateCompanyInput: PaginateCompanyInput): [Company]!
+  companies(paginateVacancyInput: PaginateVacancyInput): [Vacancy]!
   user(id: ID!): User!
   users(paginateUserInput: PaginateUserInput): [User]!
-  vacancies: [Vacancy!]!
-  vacancy(id: Int!): Vacancy!
+  vacancy(id: ID!): Vacancy!
 }
 
-input PaginateCompanyInput {
+input PaginateVacancyInput {
   skip: Int
   limit: Int
   sort: String
@@ -69,7 +68,7 @@ type Mutation {
   removeUser(id: String!): User
   createVacancy(createVacancyInput: CreateVacancyInput!): Vacancy!
   updateVacancy(updateVacancyInput: UpdateVacancyInput!): Vacancy!
-  removeVacancy(id: Int!): Vacancy!
+  removeVacancy(id: String!): Vacancy
 }
 
 input LoginUserInput {
@@ -102,16 +101,20 @@ input UpdateUserInput {
   name: String
   confirmed_password: String
   companyId: String
-  id: Int!
+  id: ID!
 }
 
 input CreateVacancyInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  title: String!
+  description: String
+  expiredAt: String!
+  company_id: String!
 }
 
 input UpdateVacancyInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  title: String
+  description: String
+  expiredAt: String
+  company_id: String
+  id: ID!
 }
