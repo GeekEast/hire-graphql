@@ -4,10 +4,14 @@ import { CreateCompanyInput } from './dto/create-company.input';
 import { UpdateCompanyInput } from './dto/update-company.input';
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { CONTEXT } from '@nestjs/graphql';
+import { Request } from 'express';
 
 @Injectable()
 export class CompanyAPI extends RESTDataSource {
-  constructor(private configService: ConfigService, @Inject(CONTEXT) context) {
+  constructor(
+    private configService: ConfigService,
+    @Inject(CONTEXT) { req }: { req: Request },
+  ) {
     super();
     this.baseURL = this.configService.get<string>('api_url') + '/companies';
   }
