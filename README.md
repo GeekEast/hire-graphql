@@ -12,14 +12,11 @@
   - `Internal Network Protocol` can be switched to `tcp` or even `gRPC`.
 - **Subscription**: currently **not** supported in Apollo Federation
 
-## Project Plan
-- Apollo Offical Starter Tutorial: especially about `auth`, `paginiation` and `subscription` implementation.
-- Implement Apollo Starter project using `Nest.js`
-- Build this project
-  - Implement the GraphQL server on the Restful **API**.
-  - Implement the GraphQL server on the **Auth** Service.
-  - Implement the GraphQL **gateway** 
-  - Workaround for **subscription** in current architecture.
+
+## Start
+```sh
+docker-compose --env-file .docker.development.env up -d
+```
 ## Issues
 - Build apollo server with Typescript failed the non-relative path. - `I switch to Nest.js,out of box ts support`
 - How to solve `N+1` problem in GraphQL? - `Data Loader` 
@@ -37,4 +34,3 @@
 - Add global exception filters.
 - You need to know about how dependency injection works and how to implement it.
 - Circular Query?!
-- Adjust sort paramter types
