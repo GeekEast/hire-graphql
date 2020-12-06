@@ -34,7 +34,7 @@ import { Vacancy as VacancyAPI } from './vacancies/vacancies.service';
     }),
     ConfigModule.forRoot({
       load: [configs],
-      envFilePath: ['.local.development.env'],
+      envFilePath: ['.local.development.env', '.docker.development.env'],
       isGlobal: true,
       cache: true,
       expandVariables: true,
